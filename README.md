@@ -7,7 +7,7 @@
 
 Written in Nim.  
 Scrapes data from serial monitor on port `/dev/ttyusb0`.  
-Returns a sequence of values taken from xml.  
+Will serve the data in a json format on port 5000.
 
 ---
 

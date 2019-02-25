@@ -10,7 +10,7 @@ def hello():
     data = file.read().splitlines()
     file.close()
 
-    return render_template('index',
+    return render_template('index.json',
         celltemp=data[0],
         cellpres=data[1],
         co2=data[2],
