@@ -1,0 +1,16 @@
+{
+    "celltemp": {{celltemp}}, 
+    "cellpress": {{cellpres}},
+    "co2": {{co2}},
+    "co2abs": {{co2abs}},
+    "h2o": {{h2o}},
+    "h2oabs": {{h2oabs}},
+    "h2odewpoint": {{h2odewpoint}},
+    "ivolt": {{ivolt}},
+    "raw": {
+        "co2": {{co2raw}},
+        "co2ref": {{co2ref}},
+        "h2o": {{h2oraw}},
+        "h2oref": {{h2oref}}
+    }
+}

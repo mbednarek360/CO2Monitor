@@ -6,10 +6,24 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():  
-    file = open('data.json', 'r') 
-    data = file.read()
+    file = open('data.txt', 'r') 
+    data = file.read().splitlines()
     file.close()
-    return render_template('index.html', co2=data)
+
+    return render_template('index',
+        celltemp=data[0],
+        cellpres=data[1],
+        co2=data[2],
+        co2abs=data[3],
+        h2o=data[4],
+        h2oabs=data[5],
+        h2odewpoint=data[6],
+        ivolt=data[7],
+        co2raw=data[8],
+        co2ref=data[9],
+        h2oraw=data[10],
+        h2oref=data[11]
+    )
 
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
