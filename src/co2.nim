@@ -1,6 +1,7 @@
 import serial/serialport
 import osproc
 import strutils
+import locks
 
 #[
     Sequence Values:
@@ -32,9 +33,10 @@ proc parsePacket(packet: string): seq[string] =
 
 proc handlePacket(packet: string) =
     let data = parsePacket(packet)
-    echo(data)
+    discard execCmd("rm data.json")
+    discard execCmd("echo " & data[2] & " >> data.json")
 
-proc startRead() =
+proc startRead() {.thread.} =
     let port = newSerialPort("/dev/ttyUSB0")
     port.open(9600, Parity.None, 8, StopBits.One)
 
