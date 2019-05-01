@@ -35,4 +35,5 @@ def get_ip_address(ifname):
 
 if __name__ == "__main__":  
     ip = ni.ifaddresses('wlp2s0')
+    print(ip)
     app.run(host="172.16.42.213")
