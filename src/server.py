@@ -3,11 +3,14 @@ from flask import Flask
 from flask import render_template
 
 app = Flask(__name__)
+data = []
 
 @app.route("/")
 def hello():  
     file = open('data.txt', 'r') 
-    data = file.read().splitlines()
+    dataB = file.read().splitlines()
+    if (len(dataB) == 13):
+        data = dataB
     file.close()
 
     return render_template('index.json',
@@ -36,4 +39,4 @@ def get_ip_address(ifname):
 if __name__ == "__main__":  
     ip = ni.ifaddresses('wlp2s0')
     print(ip)
-    app.run(host="172.16.42.213")
+    app.run()

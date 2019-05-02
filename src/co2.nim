@@ -36,8 +36,9 @@ proc handlePacket(packet: string) =
     discard execCmd("rm data.txt")
     var v: string
     for x in data:
-        v = (v & x)
-    discard execCmd("echo " & v & " >> data.txt")
+        v = (v & "\n" & x)
+    # echo(v)
+    discard execCmd("echo \"" & v & "\" >> data.txt")
 
 proc startRead() {.thread.} =
     let port = newSerialPort("/dev/ttyUSB0")
