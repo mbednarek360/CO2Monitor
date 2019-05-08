@@ -1,13 +1,22 @@
 # global time var
 date=$(date +'%H:%M:%S')
+outp="$(date +'%m-%d-%Y').csv"
 
 # get arguements
 ip=$1
-outp=$2
+dir=$2
+
+# prepeare data file
+rm $outp
+echo "date, celltemp, cellpres, co2, co2abs,\
+ h2o, h2oabs, h2odewpoint, ivolt, co2raw, co2ref,\
+ h2oraw, h2oref" >> $dir/$outp
 
 # loop
 while true
 do
+
+    outp="$(date +'%m-%d-%Y').csv"
 
     # download data
     data=""
@@ -40,6 +49,6 @@ do
     #output data in csv
     echo "$date, $celltemp, $cellpres, $co2, $co2abs,\
  $h2o, $h2oabs, $h2odewpoint, $ivolt, $co2raw, $co2ref,\
- $h2oraw, $h2oref" >> $outp
+ $h2oraw, $h2oref" >> $dir/$outp
 
 done
