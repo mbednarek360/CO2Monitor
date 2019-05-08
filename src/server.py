@@ -5,16 +5,24 @@ from flask import render_template
 app = Flask(__name__)
 data = []
 
-@app.route("/")
-def hello():  
+def readData():
     try:
+        global data
         file = open('data.txt', 'r') 
         dataB = file.read().splitlines()
         if (len(dataB) == 13):
             data = dataB
+        else:
+            print("Corrupted data: rereading...")
+            readData()
         file.close()
     except:
-        print("Cache miss.")
+        print("Cache miss: rereading...")
+        readData()
+
+@app.route("/")
+def hello():  
+    readData()
 
     return render_template('index.json',
         celltemp=data[1],

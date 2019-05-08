@@ -3,5 +3,5 @@ google-drive-ocamlfuse data
 
 sh log.sh $1 data/CO2
 
-fusermount -u data
+killall google-drive-oc
 rmdir data
