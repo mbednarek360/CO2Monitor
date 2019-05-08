@@ -1,6 +1,6 @@
 {
     "celltemp": {{celltemp}}, 
-    "cellpress": {{cellpres}},
+    "cellpres": {{cellpres}},
     "co2": {{co2}},
     "co2abs": {{co2abs}},
     "h2o": {{h2o}},

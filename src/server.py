@@ -7,25 +7,28 @@ data = []
 
 @app.route("/")
 def hello():  
-    file = open('data.txt', 'r') 
-    dataB = file.read().splitlines()
-    if (len(dataB) == 13):
-        data = dataB
-    file.close()
+    try:
+        file = open('data.txt', 'r') 
+        dataB = file.read().splitlines()
+        if (len(dataB) == 13):
+            data = dataB
+        file.close()
+    except:
+        print("Cache miss.")
 
     return render_template('index.json',
-        celltemp=data[0],
-        cellpres=data[1],
-        co2=data[2],
-        co2abs=data[3],
-        h2o=data[4],
-        h2oabs=data[5],
-        h2odewpoint=data[6],
-        ivolt=data[7],
-        co2raw=data[8],
-        co2ref=data[9],
-        h2oraw=data[10],
-        h2oref=data[11]
+        celltemp=data[1],
+        cellpres=data[2],
+        co2=data[3],
+        co2abs=data[4],
+        h2o=data[5],
+        h2oabs=data[6],
+        h2odewpoint=data[7],
+        ivolt=data[8],
+        co2raw=data[9],
+        co2ref=data[10],
+        h2oraw=data[11],
+        h2oref=data[12]
     )
 
 def get_ip_address(ifname):
