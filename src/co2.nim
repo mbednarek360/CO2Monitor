@@ -2,6 +2,7 @@ import serial/serialport
 import osproc
 import strutils
 import locks
+import times
 
 #[
     Sequence Values:
@@ -33,12 +34,11 @@ proc parsePacket(packet: string): seq[string] =
 
 proc handlePacket(packet: string) =
     let data = parsePacket(packet)
-    discard execCmd("rm data.txt")
-    var v: string
+    var v: string = format(now(), "HH:mm:ss")
     for x in data:
         v = (v & "\n" & x)
     # echo(v)
-    discard execCmd("echo \"" & v & "\" >> data.txt")
+    discard execCmd("echo \"" & v & "\" > cache")
 
 proc startRead() {.thread.} =
     let port = newSerialPort("/dev/ttyUSB0")

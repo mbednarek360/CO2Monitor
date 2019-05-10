@@ -1,4 +1,5 @@
-import netifaces as ni
+import sys
+import os
 from flask import Flask  
 from flask import render_template
 
@@ -8,7 +9,7 @@ data = []
 def readData():
     try:
         global data
-        file = open('data.txt', 'r') 
+        file = open('cache', 'r') 
         dataB = file.read().splitlines()
         if (len(dataB) == 13):
             data = dataB
@@ -25,6 +26,7 @@ def hello():
     readData()
 
     return render_template('index.json',
+        time=data[0],
         celltemp=data[1],
         cellpres=data[2],
         co2=data[3],
@@ -48,6 +50,4 @@ def get_ip_address(ifname):
     )[20:24])
 
 if __name__ == "__main__":  
-    ip = ni.ifaddresses('wlp2s0')
-    print(ip)
-    app.run()
+    app.run(host=sys.argv[1])

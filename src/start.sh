@@ -1,5 +1,5 @@
 nim c co2.nim
 ./co2 &
-python3 server.py
+python3 server.py $(hostname -i)
 killall co2
-rm data.txt co2
+rm cache co2
