@@ -2,6 +2,7 @@ import sys
 import os
 from flask import Flask  
 from flask import render_template
+from flask import request
 
 app = Flask(__name__)
 data = []
@@ -22,24 +23,44 @@ def readData():
         readData()
 
 @app.route("/")
-def hello():  
-    readData()
-
-    return render_template('index.json',
-        time=data[0],
-        celltemp=data[1],
-        cellpres=data[2],
-        co2=data[3],
-        co2abs=data[4],
-        h2o=data[5],
-        h2oabs=data[6],
-        h2odewpoint=data[7],
-        ivolt=data[8],
-        co2raw=data[9],
-        co2ref=data[10],
-        h2oraw=data[11],
-        h2oref=data[12]
-    )
+def hello():
+    try:  
+        readData()
+        if 'raw' in request.args:
+            return render_template('raw.json',
+                time=data[0],
+                celltemp=data[1],
+                cellpres=data[2],
+                co2=data[3],
+                co2abs=data[4],
+                h2o=data[5],
+                h2oabs=data[6],
+                h2odewpoint=data[7],
+                ivolt=data[8],
+                co2raw=data[9],
+                co2ref=data[10],
+                h2oraw=data[11],
+                h2oref=data[12]
+            )
+        else:
+            return render_template('index.html',
+                time=data[0],
+                celltemp=data[1],
+                cellpres=data[2],
+                co2=data[3],
+                co2abs=data[4],
+                h2o=data[5],
+                h2oabs=data[6],
+                h2odewpoint=data[7],
+                ivolt=data[8],
+                co2raw=data[9],
+                co2ref=data[10],
+                h2oraw=data[11],
+                h2oref=data[12]
+            )
+            
+    except:
+        return 'Internal Server Error: Could not read cached data.'
 
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -50,4 +71,4 @@ def get_ip_address(ifname):
     )[20:24])
 
 if __name__ == "__main__":  
-    app.run(host=sys.argv[1])
+    app.run(host=sys.argv[1], port=80)
