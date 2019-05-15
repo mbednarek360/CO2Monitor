@@ -8,6 +8,7 @@ dir=$2
 
 # prepeare data file
 rm $dir/$outp
+touch $dir/$outp
 echo "date, celltemp, cellpres, co2, co2abs,\
  h2o, h2oabs, h2odewpoint, ivolt, co2raw, co2ref,\
  h2oraw, h2oref" >> $dir/$outp
@@ -21,9 +22,9 @@ do
 
     # download data
     data=""
-    while [ "$data" = "" ]
+    while [ "$(echo "$data" | wc -l)" != "17" ]
     do 
-        data=$(curl -s $ip)
+        data=$(curl -s $ip)  
     done
 
     {
@@ -56,9 +57,9 @@ do
     #output data in csv
     echo "$time, $celltemp, $cellpres, $co2, $co2abs,\
  $h2o, $h2oabs, $h2odewpoint, $ivolt, $co2raw, $co2ref,\
- $h2oraw, $h2oref" >> $dir/$outp &
-
-    # stdout logs
+ $h2oraw, $h2oref" >> $dir/$outp 
+ 
+ # stdout logs
     echo "Wrote data: $time"
 
 
