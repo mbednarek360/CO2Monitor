@@ -6,19 +6,22 @@ outp="$(date +'%m-%d-%Y').csv"
 ip=$1
 dir=$2
 
-# prepeare data file
-rm $dir/$outp
-touch $dir/$outp
-echo "date, celltemp, cellpres, co2, co2abs,\
- h2o, h2oabs, h2odewpoint, ivolt, co2raw, co2ref,\
- h2oraw, h2oref" >> $dir/$outp
-
 # loop
 while true
 do
 
     # refresh output directory
-    outp="$(date +'%m-%d-%Y').csv"
+    if [ "$outp" != "$(date +'%m-%d-%Y').csv" ]
+    then
+
+        # prepeare data file
+        outp="$(date +'%m-%d-%Y').csv"
+        rm $dir/$outp
+        touch $dir/$outp
+        echo "time, celltemp, cellpres, co2, co2abs,\
+ h2o, h2oabs, h2odewpoint, ivolt, co2raw, co2ref,\
+ h2oraw, h2oref" >> $dir/$outp
+    fi
 
     # download data
     data=""
