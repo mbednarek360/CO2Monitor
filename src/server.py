@@ -27,8 +27,7 @@ def hello():
     try:  
         readData()
         if 'raw' in request.args:
-            header("Content-type: text/json")
-            return render_template('raw.json',
+            return Response(render_template('raw.json',
                 time=data[0],
                 celltemp=data[1],
                 cellpres=data[2],
@@ -42,9 +41,8 @@ def hello():
                 co2ref=data[10],
                 h2oraw=data[11],
                 h2oref=data[12]
-            )
+            ), mimetype='application/json')
         else:
-            header("Content-type: text/json")
             return render_template('index.html',
                 time=data[0],
                 celltemp=data[1],
