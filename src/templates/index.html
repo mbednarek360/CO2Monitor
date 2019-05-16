@@ -1,27 +1,104 @@
 <html>
 <head>
-    <title>CO2 Data</title>
+    <title>MBS CO2</title>
 </head>
 <body>
-    <p>
-    <h1>
-        <b>Current CO2: </b>{{co2}} ppm
-    </h1>
-    <h2>As of {{time}}</h2>
+    <center>
+    <div id="main">
+        <h1><b id="co2disp">{{co2}}</b> ppm</h1>
+        <h3 id="time">As of {{time}}</h3>
+    </div>
 
-    <hr>
+    <br>
+
+    <div id="stats">
     <h2>Other Values:</h2>
-    <b>Celltemp: </b>{{celltemp}}<br>
-    <b>Cellpres: </b>{{cellpres}}<br>
-    <b>Co2abs: </b>{{co2abs}}<br>
-    <b>H2o: </b>{{h2o}}<br>
-    <b>H2oabs: </b>{{h2oabs}}<br>
-    <b>H2odewpoint: </b>{{h2odewpoint}}<br>
-    <b>Ivolt: </b>{{ivolt}}<br>
-    <b>Co2raw: </b>{{co2raw}}<br>
-    <b>Co2ref: </b>{{co2ref}}<br>
-    <b>H2oraw: </b>{{h2oraw}}<br>
-    <b>H2oref: </b>{{h2oref}}<br>
-    </p>
+        <b>Celltemp: </b>{{celltemp}}<br>
+        <b>Cellpres: </b>{{cellpres}}<br>
+        <b>Co2abs: </b>{{co2abs}}<br>
+        <b>H2o: </b>{{h2o}}<br>
+        <b>H2oabs: </b>{{h2oabs}}<br>
+        <b>H2odewpoint: </b>{{h2odewpoint}}<br>
+        <b>Ivolt: </b>{{ivolt}}<br>
+        <b>Co2raw: </b>{{co2raw}}<br>
+        <b>Co2ref: </b>{{co2ref}}<br>
+        <b>H2oraw: </b>{{h2oraw}}<br>
+        <b>H2oref: </b>{{h2oref}}<br>
+    </div>
+
+    <br>
+    </center>
+    <p id="sig">Made by Michael Bednarek</p>
 </body>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+:root {
+  --nord0: #2e3440;
+
+  --nord1: #3b4252;
+
+  --nord2: #434c5e;
+
+  --nord3: #4c566a;
+
+  --nord4: #d8dee9;
+
+  --nord5: #e5e9f0;
+
+  --nord6: #eceff4;
+
+  --nord7: #8fbcbb;
+
+  --nord8: #88c0d0;
+
+  --nord9: #81a1c1;
+
+  --nord10: #5e81ac;
+
+  --nord11: #bf616a;
+
+  --nord12: #d08770;
+
+  --nord13: #ebcb8b;
+
+  --nord14: #a3be8c;
+
+  --nord15: #b48ead;
+}
+
+body {
+    padding-top: 10%;
+    font-family: 'Noto Sans', sans-serif;    
+    background-color: var(--nord0);
+    color: var(--nord5)
+  }
+
+div {
+    background-color: var(--nord1);
+    border: 2px solid var(--nord3);
+    width: 30%;
+    padding: 16px;
+    padding-top: 0px;
+  }
+
+b {
+    color: var(--nord4);
+}
+
+#time {
+    color: var(--nord4);
+}
+
+#co2disp {
+    color: var(--nord6);
+}
+
+#sig {
+    color: var(--nord3);
+    position: absolute;
+    bottom: 0;
+    right: 15;
+}
+</style>
 </html>
