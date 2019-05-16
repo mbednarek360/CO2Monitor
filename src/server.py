@@ -27,7 +27,7 @@ def hello():
     try:  
         readData()
         if 'raw' in request.args:
-            return Response(render_template('raw.json',
+            return render_template('raw.json',
                 time=data[0],
                 celltemp=data[1],
                 cellpres=data[2],
@@ -41,7 +41,7 @@ def hello():
                 co2ref=data[10],
                 h2oraw=data[11],
                 h2oref=data[12]
-            ), mimetype='application/json')
+            )
         else:
             return render_template('index.html',
                 time=data[0],
@@ -60,7 +60,8 @@ def hello():
             )
             
     except:
-        return 'Internal Server Error: Could not read cached data.'
+        abort(500)
+        abort(Response('Internal Server Error: Could not read cached data.'))
 
 def get_ip_address(ifname):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
