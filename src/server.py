@@ -41,7 +41,7 @@ def hello():
                 co2ref=data[10],
                 h2oraw=data[11],
                 h2oref=data[12]
-            )
+            ), 200, {'Content-Type': 'application/json; charset=utf-8'}
         else:
             return render_template('index.html',
                 time=data[0],
