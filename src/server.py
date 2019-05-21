@@ -6,7 +6,7 @@ from flask import request
 
 app = Flask(__name__)
 data = []
-coe = 3.456
+coe = 2.78
 
 def readData():
     try:
