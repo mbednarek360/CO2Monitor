@@ -6,6 +6,7 @@ from flask import request
 
 app = Flask(__name__)
 data = []
+offset = 300
 
 def readData():
     try:
@@ -47,7 +48,7 @@ def hello():
                 time=data[0],
                 celltemp=data[1],
                 cellpres=data[2],
-                co2=str(float(data[3])),
+                co2=str(float(data[3]) + offset),
                 co2abs=data[4],
                 h2o=data[5],
                 h2oabs=data[6],
