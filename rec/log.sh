@@ -1,6 +1,6 @@
 # global time var
 old=""
-outp="$(date +'%m-%d-%Y').csv"
+outp=""
 
 # get arguements
 ip=$1
